@@ -1,0 +1,30 @@
+---
+
+- name: install pip packages
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - PyYAML
+    - jinja2
+    - paramiko
+    - six
+    - setuptools
+
+
+- name: clone ansible repository
+  git:
+    repo: https://github.com/ansible/ansible.git
+    dest: /root/ansible
+    clone: yes
+    recursive: yes
+   
+- name: make install ansible
+  make:
+    chdir: /root/ansible
+    target: install 
+
+- name: create /etc/ansible
+  file:
+    path: /etc/ansible
+    state: directory
