@@ -18,6 +18,7 @@
     dest: /root/ansible
     clone: yes
     recursive: yes
+    version: stable-2.2
    
 - name: make install ansible
   make:
